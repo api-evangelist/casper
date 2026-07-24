@@ -1,0 +1,23 @@
+generated: '2026-07-18'
+method: searched
+source: live probe of https://casper.com/.well-known/*
+host: https://casper.com
+documents:
+- path: /.well-known/openid-configuration
+  status: 200
+  file: casper-openid-configuration.json
+  note: Shopify Customer Account API OIDC discovery (issuer shopify.com/authentication/60822683729)
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  file: casper-oauth-authorization-server.json
+  note: RFC 8414 authorization-server metadata (identical Shopify customer-account issuer)
+- path: /.well-known/ucp
+  status: 200
+  file: casper-ucp.json
+  note: Universal Commerce Protocol (ucp.dev) merchant profile; advertises the MCP shopping endpoint
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404

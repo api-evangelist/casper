@@ -1,0 +1,37 @@
+generated: '2026-07-18'
+method: searched
+status: published
+source: https://casper.com/llms.txt + https://casper.com/.well-known/ucp
+notes: >-
+  Casper's casper.com storefront runs on Shopify and exposes an agentic-commerce
+  MCP server via the Universal Commerce Protocol (UCP, ucp.dev). The MCP endpoint
+  requires a UCP discovery/agent-profile handshake before tools/list succeeds
+  (a bare tools/list returns error -32001 invalid_profile_url). Tool set below is
+  the UCP dev.ucp.shopping surface documented in llms.txt and the UCP shopping schema.
+server:
+  name: casper-ucp-shopping
+  transport: http
+  protocol: mcp
+  url: https://casper.com/api/ucp/mcp
+  discovery: https://casper.com/.well-known/ucp
+  ucp_version: '2026-04-08'
+  supported_versions:
+  - '2026-04-08'
+  - '2026-01-23'
+  schema: https://ucp.dev/2026-04-08/services/shopping/mcp.openrpc.json
+  platform: Shopify
+tools:
+- name: search_catalog
+  description: Cross-store catalog search for products matching the buyer's intent.
+- name: create_cart
+  description: Create a cart and add desired items.
+- name: create_checkout
+  description: Start the purchase flow from a cart.
+- name: update_checkout
+  description: Set shipping address and shipping method on a checkout.
+- name: complete_checkout
+  description: Finalize the purchase; buyer must approve payment (human-in-the-loop required).
+rules:
+- Checkout requires contemporaneous human/buyer approval before payment is completed.
+- MCP endpoint is rate-limited per IP; back off on HTTP 429.
+- Pass buyer context (context.address_country, context.currency) for accurate pricing/availability.

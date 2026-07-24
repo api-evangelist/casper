@@ -1,8 +1,28 @@
 aid: casper
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/casper.png
 name: Casper
-description: 'Casper is a company surfaced as a portfolio company of ivp, slow-ventures and added to the
-  API Evangelist network as a stub for enrichment. Sector: ecommerce. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Casper (Casper Sleep Inc.) is a direct-to-consumer sleep and home goods brand that
+  sells mattresses, bedding, pillows, and sleep accessories online at casper.com and
+  through retail partners. Its casper.com storefront runs on Shopify and exposes a
+  modern agentic-commerce surface: a published llms.txt/agents.md with agent
+  instructions, the Universal Commerce Protocol (UCP) merchant profile, a UCP shopping
+  MCP endpoint for AI agents to search, cart, and check out, and Shopify Customer
+  Account API OpenID Connect authentication. Casper was added to the API Evangelist
+  network as a portfolio company of IVP and Slow Ventures and enriched from its live
+  public agent/commerce surface.
 url: https://raw.githubusercontent.com/api-evangelist/casper/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -13,10 +33,16 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
 - Ecommerce
+- Retail
+- Sleep
+- Mattresses
+- Direct to Consumer
+- Agentic Commerce
+- Shopify
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -26,3 +52,33 @@ maintainers:
 common:
 - type: Website
   url: https://casper.com
+- type: MCPServer
+  name: Casper UCP shopping MCP
+  url: mcp/casper-mcp.yml
+- type: WellKnown
+  name: Casper .well-known discovery index
+  url: well-known/casper-well-known.yml
+- type: LLMsTxt
+  name: Casper llms.txt agent instructions
+  url: llms/casper-llms.txt
+- type: Authentication
+  name: Casper authentication profile
+  url: authentication/casper-authentication.yml
+- type: OAuthScopes
+  name: Casper OAuth scopes
+  url: scopes/casper-scopes.yml
+- type: Conventions
+  name: Casper API/commerce conventions
+  url: conventions/casper-conventions.yml
+- type: DomainSecurity
+  name: Casper domain security posture
+  url: security/casper-domain-security.yml
+- type: PrivacyPolicy
+  url: https://casper.com/policies/privacy-policy
+- type: TermsOfService
+  url: https://casper.com/policies/terms-of-service
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

@@ -1,0 +1,34 @@
+generated: '2026-07-18'
+method: searched
+source: https://casper.com/llms.txt + https://casper.com/.well-known/ucp
+notes: >-
+  Cross-cutting agent/commerce semantics for the casper.com Shopify storefront, as
+  published in its llms.txt agent instructions and UCP merchant profile.
+authentication:
+  style: Shopify Customer Account API OIDC/OAuth2 (authorization code + PKCE); anonymous read for public product/collection JSON.
+  reference: authentication/casper-authentication.yml
+agent_access:
+  llms_txt: https://casper.com/llms.txt
+  agents_md: https://casper.com/agents.md
+  protocol: Universal Commerce Protocol (UCP, https://ucp.dev)
+  ucp_versions: ['2026-04-08', '2026-01-23']
+  mcp_endpoint: https://casper.com/api/ucp/mcp
+  discovery: https://casper.com/.well-known/ucp
+human_in_the_loop:
+  required_for: [checkout payment completion]
+  rule: Agents must not complete payment without explicit, contemporaneous buyer approval.
+rate_limiting:
+  signal: HTTP 429
+  policy: Per-IP rate limiting on the MCP endpoint; agents must back off on 429.
+  reference: null
+buyer_context:
+  params: [context.address_country, context.currency]
+  purpose: Required for accurate pricing and availability.
+read_only_browsing:
+  auth_required: false
+  endpoints:
+  - GET /collections/all
+  - GET /products/{handle}.json
+  - GET /collections/{handle}/products.json
+  - GET /search?q={query}&type=product
+  - GET /sitemap.xml
