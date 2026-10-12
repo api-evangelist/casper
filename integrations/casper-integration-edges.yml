@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/casper/integrations
+- https://n8n.io/integrations/casper/
+- https://composio.dev/toolkits/casper
+- https://monid.ai/tools/casper
+checked:
+- https://composio.dev/toolkits/casper
+- https://monid.ai/tools/casper
+- https://n8n.io/integrations/casper/
+- https://zapier.com/apps/casper/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
